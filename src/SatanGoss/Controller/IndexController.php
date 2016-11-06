@@ -20,4 +20,9 @@ class IndexController
     {
         return new JsonResponse(['whois' => 'MACGAREN FATHER']);
     }
+
+    public function hiBotAction(Request $request, Application $app)
+    {
+        var_dump($request->getContent());
+    }
 }
