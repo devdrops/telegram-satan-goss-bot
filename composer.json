@@ -3,7 +3,8 @@
     "description": "The Mighty Satan Goss!",
     "require": {
         "silex/silex": "^2.0",
-        "monolog/monolog": "^1.21"
+        "monolog/monolog": "^1.21",
+        "irazasyed/telegram-bot-sdk": "^2.1"
     },
     "authors": [
         {
