@@ -18,6 +18,6 @@ class IndexController
 
     public function botAction(Request $request, Application $app)
     {
-        return new JsonResponse(['whois' => 'THE MIGHTY SATAN GOSS']);
+        return new JsonResponse(['whois' => 'MACGAREN FATHER']);
     }
 }
