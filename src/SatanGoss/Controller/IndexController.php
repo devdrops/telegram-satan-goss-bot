@@ -48,5 +48,7 @@ class IndexController
     public function hiBotAction(Request $request, Application $app)
     {
         var_dump($request->getContent());
+
+        return new JsonResponse(['hit' => true]);
     }
 }
