@@ -14,7 +14,9 @@ $app->register(
 );
 
 $app->before(function (Request $request) use ($app) {
-    //return 
+    $app['monolog']->addInfo(
+        '['.date('Y-m-d H:i:s').'] REQUEST: '.print_r($request->getContent(), true)
+    );
 });
 
 $app->error(function (\Exception $e, $request, $code) use ($app) {
