@@ -9,7 +9,7 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 
 $app->register(
     new MonologServiceProvider(),
-    ['monolog.logfile' => __DIR__ . '/../logs/logfile.log']
+    ['monolog.logfile' => __DIR__ . '/logs/logfile.log']
 );
 
 $app->error(function (\Exception $e, $request, $code) use ($app) {

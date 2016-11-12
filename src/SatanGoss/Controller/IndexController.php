@@ -18,6 +18,8 @@ class IndexController
 
     public function botAction(Request $request, Application $app)
     {
+        $app['monolog']->addInfo('['.date('Y-m-d H:i:s').'] CONTENTS: '.print_r($request->getContent(), true));
+
         return new JsonResponse(['whois' => 'MACGAREN FATHER']);
     }
 
