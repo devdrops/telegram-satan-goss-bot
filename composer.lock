@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "33954b34759105a6013a92bc31bfe440",
-    "content-hash": "fade9b092ad5b0a86690d6fa742a1faf",
+    "hash": "e797024fa702ebbe6ee2908acce1198d",
+    "content-hash": "b292f91c886c2e1c177939fb585c1461",
     "packages": [
         {
             "name": "doctrine/inflector",
@@ -405,6 +405,58 @@
                 "telegram sdk"
             ],
             "time": "2016-11-01 20:09:05"
+        },
+        {
+            "name": "longman/telegram-bot",
+            "version": "0.35",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/akalongman/php-telegram-bot.git",
+                "reference": "d97f386209ccb5ab802ee55a20f8c7b5306a1595"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/akalongman/php-telegram-bot/zipball/d97f386209ccb5ab802ee55a20f8c7b5306a1595",
+                "reference": "d97f386209ccb5ab802ee55a20f8c7b5306a1595",
+                "shasum": ""
+            },
+            "require": {
+                "ext-curl": "*",
+                "ext-pdo": "*",
+                "guzzlehttp/guzzle": "~6.0",
+                "monolog/monolog": "^1.19",
+                "php": ">=5.5.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "~4.8",
+                "squizlabs/php_codesniffer": "~2.5"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Longman\\TelegramBot\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Avtandil Kikabidze aka LONGMAN",
+                    "email": "akalongman@gmail.com",
+                    "homepage": "http://longman.me",
+                    "role": "Developer"
+                }
+            ],
+            "description": "PHP telegram bot",
+            "homepage": "https://github.com/akalongman/php-telegram-bot",
+            "keywords": [
+                "api",
+                "bot",
+                "telegram"
+            ],
+            "time": "2016-07-30 08:36:15"
         },
         {
             "name": "monolog/monolog",

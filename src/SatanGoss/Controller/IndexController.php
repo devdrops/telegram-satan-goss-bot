@@ -21,6 +21,24 @@ class IndexController
         return new JsonResponse(['whois' => 'MACGAREN FATHER']);
     }
 
+    public function setupBotAction(Request $request, Application $app)
+    {
+        try {
+            $telegram = new \Longman\TelegramBot\Telegram(
+                $app['telegram']['bot_key'],
+                $app['telegram']['bot_name']
+            );
+
+            $result = $telegram->setWebHook($app['telegram']['webhook']);
+
+            if ($result->isOk()) {
+                return new JsonResponse([$result->getDescription()]);
+            }
+        } catch (\Exception $exception) {
+            var_dump($exception);
+        }
+    }
+
     public function hiBotAction(Request $request, Application $app)
     {
         var_dump($request->getContent());
