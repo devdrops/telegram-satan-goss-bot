@@ -18,7 +18,13 @@ class IndexController
 
     public function botAction(Request $request, Application $app)
     {
-        return new JsonResponse(['whois' => 'MACGAREN FATHER']);
+        $contents = $request->getContent();
+
+        if (isset($contents['chat_id'])) {
+            return new JsonResponse(['whois' => 'TELEGRAM IS HERE']);
+        } else {
+            return new JsonResponse(['whois' => 'MACGAREN FATHER']);
+        }
     }
 
     public function setupBotAction(Request $request, Application $app)
