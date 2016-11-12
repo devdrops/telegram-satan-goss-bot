@@ -6,11 +6,16 @@
 
 use Silex\Provider\MonologServiceProvider;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Request;
 
 $app->register(
     new MonologServiceProvider(),
-    ['monolog.logfile' => __DIR__ . '/logs/logfile.log']
+    ['monolog.logfile' => __DIR__ . '/../logfile.log']
 );
+
+$app->before(function (Request $request) use ($app) {
+    //return 
+});
 
 $app->error(function (\Exception $e, $request, $code) use ($app) {
     if ($app['debug']) {
