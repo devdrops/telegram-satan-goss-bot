@@ -14,9 +14,10 @@ $app->register(
 );
 
 $app->before(function (Request $request) use ($app) {
-    $app['monolog']->addNotice(
+    /*$app['monolog']->addNotice(
         'DATA_FROM_REQUEST: '.print_r($request->getContent(), true)
-    );
+    );*/
+    var_dump($request->getContent());
 });
 
 $app->error(function (\Exception $e, $request, $code) use ($app) {
