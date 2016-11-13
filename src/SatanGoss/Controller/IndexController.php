@@ -30,12 +30,7 @@ class IndexController
     public function setupBotAction(Request $request, Application $app)
     {
         try {
-            $telegram = new \Longman\TelegramBot\Telegram(
-                $app['telegram']['bot_key'],
-                $app['telegram']['bot_name']
-            );
-
-            $result = $telegram->setWebHook($app['telegram']['webhook']);
+            $result = $app['telegram']->setWebHook($app['telegram.settings']['webhook']);
 
             if ($result->isOk()) {
                 return new JsonResponse([$result->getDescription()]);
