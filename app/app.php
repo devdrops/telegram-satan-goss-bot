@@ -4,21 +4,14 @@
  * Application's settings.
  */
 
-use Silex\Provider\MonologServiceProvider;
+use SatanGoss\Provider\TelegramServiceProvider;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 
 $app->register(
-    new MonologServiceProvider(),
-    ['monolog.logfile' => __DIR__ . '/logs/logfile.log']
+    new TelegramServiceProvider(),
+    $app['telegram.settings']
 );
-
-$app->before(function (Request $request) use ($app) {
-    /*$app['monolog']->addNotice(
-        'DATA_FROM_REQUEST: '.print_r($request->getContent(), true)
-    );*/
-    var_dump($request->getContent());
-});
 
 $app->error(function (\Exception $e, $request, $code) use ($app) {
     if ($app['debug']) {
