@@ -14,6 +14,15 @@ class TweetCommand extends UserCommand
 
     public function execute()
     {
+        $foo = $app['twitter']->request(
+            'https://api.twitter.com/1.1/statuses/update.json',
+            'POST',
+            [
+                'status' => 'TIME IS '.time(),
+                'possibly_sensitive' => false
+            ]
+        );
+
         $message = $this->getMessage();
 
         $chatId = $message->getChat()->getId();

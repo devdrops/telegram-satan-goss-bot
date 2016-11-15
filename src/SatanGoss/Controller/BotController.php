@@ -2,6 +2,8 @@
 
 namespace SatanGoss\Controller;
 
+use Longman\TelegramBot\Request;
+use Longman\TelegramBot\Entities\Update;
 use Silex\Application;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -13,27 +15,23 @@ class BotController
 {
     public function webhookAction(Request $request, Application $app)
     {
-        //try {
-            throw new \Exception($request->getContent());die();
+        try {
+            $input = Request::getInput();
 
-            $foo = $app['twitter']->request(
-                'https://api.twitter.com/1.1/statuses/update.json',
-                'POST',
-                [
-                    'status' => 'TIME IS '.time(),
-                    'possibly_sensitive' => false
-                ]
-            );
+            $post = json_decode($input, true);
+            if (empty($post)) {
+                throw new \Exception('Invalid JSON!');
+            }
 
-            $result = $app['telegram']->handle();
+            $result = $app['telegram']->processUpdate(new Update($post, $this->bot_name))->isOk();
 
             if (true !== $result) {
                 return new JsonResponse(['status' => 'Houston, we have a problem.'], 500);
             }
 
             return new JsonResponse(['status' => 'The eagle has landed!']);
-        //} catch (\Exception $exception) {
-        //    var_dump($exception);
-        //}
+        } catch (\Exception $exception) {
+            var_dump($exception);
+        }
     }
 }
