@@ -5,12 +5,18 @@
  */
 
 use SatanGoss\Provider\TelegramServiceProvider;
+use SatanGoss\Provider\TwitterServiceProvider;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 
 $app->register(
     new TelegramServiceProvider(),
     $app['telegram.settings']
+);
+
+$app->register(
+    new TwitterServiceProvider(),
+    $app['twitter.settings']
 );
 
 $app->error(function (\Exception $e, $request, $code) use ($app) {
