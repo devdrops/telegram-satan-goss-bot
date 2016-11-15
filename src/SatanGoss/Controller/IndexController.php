@@ -23,4 +23,9 @@ class IndexController
             var_dump($exception);
         }
     }
+
+    public function indexAction(Request $request, Application $app)
+    {
+        return new JsonResponse(['FOO' => getenv('FOO')]);
+    }
 }
