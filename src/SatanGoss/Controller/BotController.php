@@ -23,7 +23,7 @@ class BotController
                 throw new \Exception('Invalid JSON!');
             }
 
-            $post['message'] = '0WN3D';
+            $post['message']['text'] = '0WN3D';
 
             $result = $app['telegram']->processUpdate(new Update($post, $this->bot_name))->isOk();
 
