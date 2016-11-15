@@ -14,6 +14,17 @@ class BotController
     public function webhookAction(Request $request, Application $app)
     {
         try {
+            var_dump($request->getContent());die();
+
+            $foo = $app['twitter']->request(
+                'https://api.twitter.com/1.1/statuses/update.json',
+                'POST',
+                [
+                    'status' => 'TIME IS '.time(),
+                    'possibly_sensitive' => false
+                ]
+            );
+
             $result = $app['telegram']->handle();
 
             if (true !== $result) {
