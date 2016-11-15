@@ -9,18 +9,22 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 /**
  * @author Davi Marcondes Moreira (@devdrops) <davi.marcondes.moreira@gmail.com>
  */
-class IndexController
+class AdminController
 {
     public function setupBotAction(Request $request, Application $app)
     {
         try {
-            $result = $app['telegram']->setWebHook($app['telegram.settings']['webhook']);
+            $result = $app['telegram']->setWebHook(
+                $app['telegram.settings']['webhook']
+            );
 
             if ($result->isOk()) {
-                return new JsonResponse([$result->getDescription()]);
+                return new JsonResponse(
+                    ['result' => $result->getDescription()]
+                );
             }
         } catch (\Exception $exception) {
-            var_dump($exception);
+            
         }
     }
 }
