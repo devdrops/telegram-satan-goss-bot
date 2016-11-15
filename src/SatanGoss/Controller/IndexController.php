@@ -25,22 +25,4 @@ class IndexController
             var_dump($exception);
         }
     }
-
-    public function tweetAction(Request $request, Application $app)
-    {
-        try {
-            $app['twitter']->request(
-                'https://api.twitter.com/1.1/statuses/update.json',
-                'POST',
-                [
-                    'status' => $request->get('message'),
-                    'possibly_sensitive' => false
-                ]
-            );
-
-            return new JsonResponse(['status' => 'done']);
-        } catch (\Exception $exception) {
-            var_dump($exception);
-        }        
-    }
 }
