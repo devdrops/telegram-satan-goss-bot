@@ -23,9 +23,9 @@ class BotController
                 throw new \Exception('Invalid JSON!');
             }
 
-            $post['edited_message']['text'] = '0WN3D';
+            $update = new Update($post, $app['telegram.settings']['TELEGRAM.BOT_NAME']);
 
-            $result = $app['telegram']->processUpdate(new Update($post, $this->bot_name))->isOk();
+            $result = $app['telegram']->processUpdate($update)->isOk();
 
             if (true !== $result) {
                 return new JsonResponse(['status' => 'Houston, we have a problem.'], 500);
