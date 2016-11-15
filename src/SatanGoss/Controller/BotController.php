@@ -2,7 +2,7 @@
 
 namespace SatanGoss\Controller;
 
-use Longman\TelegramBot\Request;
+use Longman\TelegramBot\Request as TelegramRequest;
 use Longman\TelegramBot\Entities\Update;
 use Silex\Application;
 use Symfony\Component\HttpFoundation\Request;
@@ -16,7 +16,7 @@ class BotController
     public function webhookAction(Request $request, Application $app)
     {
         try {
-            $input = Request::getInput();
+            $input = TelegramRequest::getInput();
 
             $post = json_decode($input, true);
             if (empty($post)) {
