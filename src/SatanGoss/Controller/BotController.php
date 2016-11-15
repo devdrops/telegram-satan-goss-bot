@@ -13,8 +13,8 @@ class BotController
 {
     public function webhookAction(Request $request, Application $app)
     {
-        try {
-            var_dump($request->getContent());die();
+        //try {
+            throw new \Exception($request->getContent());die();
 
             $foo = $app['twitter']->request(
                 'https://api.twitter.com/1.1/statuses/update.json',
@@ -32,8 +32,8 @@ class BotController
             }
 
             return new JsonResponse(['status' => 'The eagle has landed!']);
-        } catch (\Exception $exception) {
-            var_dump($exception);
-        }
+        //} catch (\Exception $exception) {
+        //    var_dump($exception);
+        //}
     }
 }
