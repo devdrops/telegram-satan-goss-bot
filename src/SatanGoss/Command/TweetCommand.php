@@ -2,7 +2,6 @@
 
 namespace Longman\TelegramBot\Commands\UserCommands;
 
-use Silex\Application;
 use Longman\TelegramBot\Commands\UserCommand;
 
 class TweetCommand extends UserCommand
@@ -12,14 +11,9 @@ class TweetCommand extends UserCommand
     protected $usage = '/tweet';
     protected $version = '1.0.0';
 
-    public function __construct(Application $app)
-    {
-        $this->app = $app;
-    }
-
     public function execute()
     {
-        $foo = $this->app['twitter']->request(
+        $foo = $app['twitter']->request(
             'https://api.twitter.com/1.1/statuses/update.json',
             'POST',
             [
@@ -34,7 +28,7 @@ class TweetCommand extends UserCommand
 
         $data = [
             'chat_id' => $chatId,
-            'text' => ''
+            'text' => $foo
         ];
 
         return \Longman\TelegramBot\Request::sendMessage($data);
