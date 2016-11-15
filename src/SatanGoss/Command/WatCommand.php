@@ -7,7 +7,7 @@ use Longman\TelegramBot\Commands\UserCommand;
 class WatCommand extends UserCommand
 {
     protected $name = 'wat';
-    protected $description = 'WAT';
+    protected $description = 'Test command.';
     protected $usage = '/wat';
     protected $version = '1.0.0';
 

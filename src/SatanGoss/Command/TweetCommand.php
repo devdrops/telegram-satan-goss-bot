@@ -12,9 +12,14 @@ class TweetCommand extends UserCommand
     protected $usage = '/tweet';
     protected $version = '1.0.0';
 
+    public function __construct(Application $app)
+    {
+        $this->app = $app;
+    }
+
     public function execute()
     {
-        $foo = $app['twitter']->request(
+        $foo = $this->app['twitter']->request(
             'https://api.twitter.com/1.1/statuses/update.json',
             'POST',
             [
