@@ -19,6 +19,8 @@ class IndexController
             if ($result->isOk()) {
                 return new JsonResponse([$result->getDescription()]);
             }
+
+            return new JsonResponse(['failure' => print_r($result, true)], 500);
         } catch (\Exception $exception) {
             var_dump($exception);
         }

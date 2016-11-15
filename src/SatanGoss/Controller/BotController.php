@@ -16,11 +16,11 @@ class BotController
         try {
             $result = $app['telegram']->handle();
 
-            if (true === $result) {
-                return new JsonResponse(['status' => 'The eagle has landed!']);
-            } else {
+            if (true !== $result) {
                 return new JsonResponse(['status' => 'Houston, we have a problem.'], 500);
             }
+
+            return new JsonResponse(['status' => 'The eagle has landed!']);
         } catch (\Exception $exception) {
             var_dump($exception);
         }
