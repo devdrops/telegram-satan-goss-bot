@@ -29,7 +29,8 @@ class TweetCommand extends UserCommand
         $status = $connection->post(
             'statuses/update',
             [
-                'status' => 'TIME IS '.microtime()
+                //'status' => 'TIME IS '.microtime()
+                'status' => $message->getText()
             ]
         );
 
@@ -37,15 +38,14 @@ class TweetCommand extends UserCommand
             throw new \RuntimeException('Tweet has failed.');
         }
 
-        $update = $this->getUpdate();
         $message = $this->getMessage();
 
         $chatId = $message->getChat()->getId();
 
         $data = [
             'chat_id' => $chatId,
-            //'text' => 'https://twitter.com/devdrops/status/'.$status->id_str
-            'text' => print_r($update, true)
+            'text' => 'https://twitter.com/devdrops/status/'.$status->id_str
+            //'text' => $message->getText()
         ];
 
         return \Longman\TelegramBot\Request::sendMessage($data);
