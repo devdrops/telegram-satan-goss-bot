@@ -20,13 +20,15 @@ class TweetCommand extends UserCommand
             getenv('TWITTER.ACCESS_TOKEN'),
             getenv('TWITTER.ACCESS_TOKEN_SECRET')
         );
-        
+
         $message = $this->getMessage();
+
+        $raw = explode(' ', $message->getText());
 
         $status = $connection->post(
             'statuses/update',
             [
-                'status' => $message->getText()
+                'status' => $raw[1]
             ]
         );
 
@@ -39,7 +41,6 @@ class TweetCommand extends UserCommand
         $data = [
             'chat_id' => $chatId,
             'text' => 'https://twitter.com/devdrops/status/'.$status->id_str
-            //'text' => $message->getText()
         ];
 
         return \Longman\TelegramBot\Request::sendMessage($data);
