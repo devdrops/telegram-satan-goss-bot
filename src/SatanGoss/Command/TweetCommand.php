@@ -19,17 +19,13 @@ class TweetCommand extends UserCommand
             getenv('TWITTER.CONSUMER_SECRET'),
             getenv('TWITTER.ACCESS_TOKEN'),
             getenv('TWITTER.ACCESS_TOKEN_SECRET')
-
-            //'jQpeodtWCdqPrrPwCtMt4VTRp',
-            //'IpBoheAGmKj5jO25JtHg8Rlu2rskqETENwnVfsRz9FcsPMLd6X',
-            //'147370299-CSyzmzVxYCS0F1PoFBcbzccFKJOO0kWgmG8bA3Gx',
-            //'18lVPHgYbKac7Vg2tdEz8kw8Q7TOGR6c82Z9buIRmrVGa'
         );
         
+        $message = $this->getMessage();
+
         $status = $connection->post(
             'statuses/update',
             [
-                //'status' => 'TIME IS '.microtime()
                 'status' => $message->getText()
             ]
         );
@@ -37,8 +33,6 @@ class TweetCommand extends UserCommand
         if ($connection->getLastHttpCode() !== 200) {
             throw new \RuntimeException('Tweet has failed.');
         }
-
-        $message = $this->getMessage();
 
         $chatId = $message->getChat()->getId();
 
