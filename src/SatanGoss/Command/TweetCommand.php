@@ -23,12 +23,13 @@ class TweetCommand extends UserCommand
 
         $message = $this->getMessage();
 
-        $raw = explode(' ', $message->getText());
+        //$raw = explode(' ', $message->getText());
+        $content = str_replace('/'.$this->name.' ', '', $message->getText());
 
         $status = $connection->post(
             'statuses/update',
             [
-                'status' => $raw[1]
+                'status' => $content
             ]
         );
 
