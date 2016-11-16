@@ -11,6 +11,7 @@ class TweetCommand extends UserCommand
     protected $description = 'Tweet a given <link>';
     protected $usage = '/tweet <link>';
     protected $version = '1.0.0';
+    protected $command = '/tweet'
 
     public function execute()
     {
@@ -23,8 +24,7 @@ class TweetCommand extends UserCommand
 
         $message = $this->getMessage();
 
-        //$raw = explode(' ', $message->getText());
-        $content = str_replace('/'.$this->name.' ', '', $message->getText());
+        $content = trim(str_replace($this->command, '', $message->getText()));
 
         $status = $connection->post(
             'statuses/update',
