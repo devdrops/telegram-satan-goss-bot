@@ -5,7 +5,7 @@
         "silex/silex": "^2.0",
         "monolog/monolog": "^1.21",
         "longman/telegram-bot": "^0.35.0",
-        "j7mbo/twitter-api-php": "dev-master"
+        "abraham/twitteroauth": "dev-master"
     },
     "authors": [
         {

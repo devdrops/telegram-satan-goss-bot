@@ -25,4 +25,24 @@ class IndexController
             var_dump($exception);
         }
     }
+
+    public function tweetAction(Request $request, Application $app)
+    {
+        try {
+            $status = $app['twitter']->post(
+                'statuses/update',
+                [
+                    'status' => 'TIME IS '.microtime()
+                ]
+            );
+
+            if ($app['twitter']->getLastHttpCode() !== 200) {
+                throw new \RuntimeException('Tweet has failed.');
+            }
+
+            var_dump($status);
+        } catch (\Exception $exception) {
+            var_dump($exception);
+        }
+    }
 }
