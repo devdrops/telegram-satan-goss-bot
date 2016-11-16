@@ -25,12 +25,7 @@ class BotController
 
             $update = new Update($post, $app['telegram.settings']['TELEGRAM.BOT_NAME']);
 
-            //$result = $app['telegram']->processUpdate($update)->isOk();
-            $command = new \Longman\TelegramBot\Commands\UserCommands\TweetCommand(
-                $app['telegram'],
-                $update
-            );
-            $result = $command->execute();
+            $result = $app['telegram']->processUpdate($update)->isOk();
 
             if (true !== $result) {
                 return new JsonResponse(['status' => 'Houston, we have a problem.'], 500);
