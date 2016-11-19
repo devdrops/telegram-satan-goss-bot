@@ -16,7 +16,7 @@ class BotController
     public function webhookAction(Request $request, Application $app)
     {
         try {
-            $update = new Update($request->getContent());
+            $update = new Update(json_decode($request->getContent(), true));
 
             $message = new SendMessage();
             $message->chat_id = $update->message->chat->id;
