@@ -6,9 +6,7 @@
 
 $app['telegram.settings'] = [
     'bot_key' => getenv('TELEGRAM.BOT_KEY'),
-    'bot_name' => getenv('TELEGRAM.BOT_NAME'),
     'webhook' => getenv('TELEGRAM.WEBHOOK'),
-    'command_path' => __DIR__.'/../../src/SatanGoss/Command/',
 ];
 
 $app['twitter.settings'] = [

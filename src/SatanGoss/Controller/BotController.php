@@ -25,15 +25,6 @@ class BotController
             $app['telegram']->performApiRequest($message);
 
             /*
-            $post = json_decode($input, true);
-            if (empty($post)) {
-                throw new \Exception('Invalid JSON!');
-            }
-
-            $update = new Update($post, $app['telegram.settings']['TELEGRAM.BOT_NAME']);
-
-            $result = $app['telegram']->processUpdate($update)->isOk();
-
             if (true !== $result) {
                 return new JsonResponse(['status' => 'Houston, we have a problem.'], 500);
             }

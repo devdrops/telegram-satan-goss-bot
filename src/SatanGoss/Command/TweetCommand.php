@@ -1,17 +1,12 @@
 <?php
 
-namespace Longman\TelegramBot\Commands\UserCommands;
+namespace SatanGoss\Command;
 
 use Abraham\TwitterOAuth\TwitterOAuth;
-use Longman\TelegramBot\Commands\UserCommand;
 
-class TweetCommand extends UserCommand
+class TweetCommand
 {
-    protected $name = 'tweet';
-    protected $description = 'Tweet a given <link>';
-    protected $usage = '/tweet <link>';
-    protected $version = '1.0.0';
-    protected $command = '/tweet';
+    const COMMAND_NAME = '/tweet';
 
     public function execute()
     {
@@ -24,7 +19,7 @@ class TweetCommand extends UserCommand
 
         $message = $this->getMessage();
 
-        $content = trim(str_replace($this->command, '', $message->getText()));
+        $content = trim(str_replace(self::COMMAND_NAME, '', $message->getText()));
 
         $status = $connection->post(
             'statuses/update',
