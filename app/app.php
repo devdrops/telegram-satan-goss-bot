@@ -24,8 +24,9 @@ $app->before(function (Request $request, Application $app){
     try {
         $dbConnection = new \PDO('pgsql:dbname=d5vv3r52jtejid;host=ec2-54-235-255-27.compute-1.amazonaws.com;user=fdzewgxayvgngl;password='.getenv('DB.LOGS'));
 
-        var_dump($dbConnection);
-        die();
+        $contents = $request->getContents();
+
+        $dbConnection->query("INSERT INTO requests (data) VALUES ('$contents')");
 
     } catch (\Exception $exception) {
         var_dump($exception);
