@@ -24,7 +24,7 @@ $app->before(function (Request $request, Application $app){
     try {
         $dbConnection = new \PDO('pgsql:dbname=d5vv3r52jtejid;host=ec2-54-235-255-27.compute-1.amazonaws.com;user=fdzewgxayvgngl;password='.getenv('DB.LOGS'));
 
-        var_dump($dbConnection->query('SELECT datname FROM d5vv3r52jtejid'));
+        var_dump($dbConnection);
         die();
 
     } catch (\Exception $exception) {
