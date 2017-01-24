@@ -1,6 +1,6 @@
 <?php
 
-namespace SatanGoss\Provider;
+namespace IgorBot\Provider;
 
 use Pimple\Container;
 use Pimple\ServiceProviderInterface;

@@ -4,4 +4,4 @@
  * Application's routes.
  */
 
-$app->post('/action', 'SatanGoss\Controller\BotController::webhookAction');
+$app->post('/action', 'IgorBot\Controller\BotController::webhookAction');
