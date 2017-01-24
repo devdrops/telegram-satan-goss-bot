@@ -1,6 +1,6 @@
 <?php
 
-namespace SatanGoss\Controller;
+namespace IgorBot\Controller;
 
 use Silex\Application;
 use Symfony\Component\HttpFoundation\Request;
@@ -20,17 +20,17 @@ class BotController
 
             $message = new SendMessage();
             $message->chat_id = $update->message->chat->id;
-            $message->text = 'Time is '.microtime();
+
+            $botSentences = [
+                'show',
+                'shooooow',
+            ];
+
+            $message->text = $botSentences[array_rand($botSentences)];
 
             $app['telegram']->performApiRequest($message);
 
-            /*
-            if (true !== $result) {
-                return new JsonResponse(['status' => 'Houston, we have a problem.'], 500);
-            }
-            */
-
-            return new JsonResponse(['status' => 'The eagle has landed!']);
+            return new JsonResponse('Ok!');
         } catch (\Exception $exception) {
             var_dump($exception);
         }
