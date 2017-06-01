@@ -15,9 +15,9 @@ class TelegramServiceProvider implements ServiceProviderInterface
             $app['telegram.settings']['bot_key']
         );
 
-        $setWebhook = new SetWebhook();
+        /*$setWebhook = new SetWebhook();
         $setWebhook->url = $app['telegram.settings']['webhook'];
 
-        $app['telegram']->performApiRequest($setWebhook);
+        $app['telegram']->performApiRequest($setWebhook);*/
     }
 }
