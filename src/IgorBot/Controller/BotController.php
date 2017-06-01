@@ -24,6 +24,8 @@ class BotController
             $message->text = 'Comando recebido :)'; 
             $app['telegram']->performApiRequest($message);
 
+            return new JsonResponse('Done!');
+
             if (isset($update->message->entities)
                 && $update->message->entities[0]->type === 'bot_command'
                 && 0 === strpos($update->message->text, '/show')
