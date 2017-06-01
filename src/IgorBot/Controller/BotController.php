@@ -16,7 +16,7 @@ class BotController
     public function webhookAction(Request $request, Application $app)
     {
         try {
-            $update = $request->getContents();
+            $update = $request->getContent();
 
             if (isset($update->message->entities)
                 && $update->message->entities[0]->type === 'bot_command'
