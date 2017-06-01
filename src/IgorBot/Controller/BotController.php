@@ -35,14 +35,6 @@ class BotController
                 $app['telegram']->performApiRequest($message);
 
                 return new JsonResponse('Ok!');
-            } else {
-                $message = new SendMessage();
-                $message->chat_id = $update->message->chat->id;
-                $message->text = 'wut?';
-
-                $app['telegram']->performApiRequest($message);
-
-                return new JsonResponse('Fail!');
             }
         } catch (\Exception $exception) {
             var_dump($exception);
