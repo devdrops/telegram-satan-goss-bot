@@ -18,14 +18,6 @@ class BotController
         try {
             $update = new Update(json_decode($request->getContent(), true));
 
-            $message = new SendMessage();
-            $message->chat_id = $update->message->chat->id;
-
-            $message->text = 'Comando recebido :)'; 
-            $app['telegram']->performApiRequest($message);
-
-            return new JsonResponse('Done!');
-
             if (isset($update->message->entities)
                 && $update->message->entities[0]->type === 'bot_command'
                 && 0 === strpos($update->message->text, '/show')
