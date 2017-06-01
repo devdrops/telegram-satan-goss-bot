@@ -16,21 +16,34 @@ class BotController
     public function webhookAction(Request $request, Application $app)
     {
         try {
-            $update = new Update(json_decode($request->getContent(), true));
+            $update = $request->getContents();
 
-            $message = new SendMessage();
-            $message->chat_id = $update->message->chat->id;
+            if (isset($update->message->entities)
+                && $update->message->entities[0]->type === 'bot_command'
+                && 0 === strpos($update->message->text, '/show')
+            ) {
+                $message = new SendMessage();
+                $message->chat_id = $update->message->chat->id;
 
-            $botSentences = [
-                'show',
-                'shooooow',
-            ];
+                $botSentences = [
+                    'show',
+                    'shooooow',
+                ];
 
-            $message->text = $botSentences[array_rand($botSentences)];
+                $message->text = $botSentences[array_rand($botSentences)];
 
-            $app['telegram']->performApiRequest($message);
+                $app['telegram']->performApiRequest($message);
 
-            return new JsonResponse('Ok!');
+                return new JsonResponse('Ok!');
+            } else {
+                $message = new SendMessage();
+                $message->chat_id = $update->message->chat->id;
+                $message->text = 'wut?';
+
+                $app['telegram']->performApiRequest($message);
+
+                return new JsonResponse('Fail!');
+            }
         } catch (\Exception $exception) {
             var_dump($exception);
         }
