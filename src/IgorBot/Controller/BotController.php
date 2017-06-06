@@ -16,16 +16,6 @@ class BotController
     public function webhookAction(Request $request, Application $app)
     {
         try {
-            $update = new Update(json_decode($request->getContent(), true));
-
-            $message = new SendMessage();
-            $message->chat_id = $update->message->chat->id;
-
-            $message->text = 'CHAT ID:'.$update->message->chat->id;
-
-            $app['telegram']->performApiRequest($message);
-
-
             if (isset($update->message->entities)
                 && $update->message->entities[0]->type === 'bot_command'
                 && 0 === strpos($update->message->text, '/show')
