@@ -33,9 +33,9 @@ class BotController
                 $message->text = $botSentences[array_rand($botSentences)];
 
                 $app['telegram']->performApiRequest($message);
-
-                return new JsonResponse('Ok!');
             }
+
+            return new JsonResponse('Ok!');
         } catch (\Exception $exception) {
             var_dump($exception);
         }
