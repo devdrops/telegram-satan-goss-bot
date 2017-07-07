@@ -30,7 +30,9 @@ class BotController
             }
             */
 
-            return new JsonResponse(['status' => 'The eagle has landed!']);
+            $foo = $app['twitter']->get('search/tweets', ['q' => '#phpsptalks% #phpsp #pagarme']);
+
+            return new JsonResponse(['status' => $foo]);
         } catch (\Exception $exception) {
             var_dump($exception);
         }
