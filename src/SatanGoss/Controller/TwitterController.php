@@ -29,6 +29,12 @@ class TwitterController
 
             $tweets = [];
             foreach ($hashtagSearch->statuses as $item) {
+                if (true == $item->retweeted
+                    || 0 === strpos($item->text, 'RT')
+                ) {
+                    continue;
+                }
+
                 $filtered = new \stdClass;
 
                 $filtered->created_at = $item->created_at;
