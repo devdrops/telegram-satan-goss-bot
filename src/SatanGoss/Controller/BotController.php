@@ -17,54 +17,65 @@ class BotController
     {
         try {
             $update = new Update(json_decode($request->getContent(), true));
+            
+            if (isset($update->message->entities)
+                && $update->message->entities[0]->type === 'bot_command'
+                && 0 === strpos($update->message->text, '/lotteryby')
+            ) {
+                $message = new SendMessage();
+                $message->chat_id = $update->message->chat->id;
+                $query = substr(
+                    $update->message->text,
+                    trim(strpos($update->message->text, ' '))
+                );
 
-            $message = new SendMessage();
-            $message->chat_id = $update->message->chat->id;
+                $hashtagSearch = $app['twitter']->get(
+                    'search/tweets',
+                    [
+                        'q' => $query,
+                        'count' => 100,
+                        'result_type' => 'recent',
+                    ]
+                );
 
-            /*$query = '#phptestfest #phpsp #pagarme';
+                $tweets = [];
+                foreach ($hashtagSearch->statuses as $item) {
+                    if (true == $request->query->get('rt', null)
+                        && (
+                            true == $item->retweeted
+                            || 0 === strpos($item->text, 'RT')
+                        )
+                    ) {
+                        continue;
+                    }
 
-            $hashtagSearch = $app['twitter']->get(
-                'search/tweets',
-                [
-                    'q' => $query,
-                    'count' => 100,
-                    'result_type' => 'recent',
-                ]
-            );
+                    $filtered = new \stdClass;
 
-            $tweets = [];
-            foreach ($hashtagSearch->statuses as $item) {
-                if (true == $request->query->get('rt', null)
-                    && (
-                        true == $item->retweeted
-                        || 0 === strpos($item->text, 'RT')
-                    )
-                ) {
-                    continue;
+                    $filtered->created_at = $item->created_at;
+                    $filtered->text = $item->text;
+                    $filtered->user = $item->user->name;
+                    $filtered->userName = $item->user->screen_name;
+                    $filtered->isRT = $item->retweeted;
+
+                    $tweets[] = $filtered;
                 }
 
-                $filtered = new \stdClass;
+                $count = count($tweets);
+                $choosen = rand(1, $count);
 
-                $filtered->created_at = $item->created_at;
-                $filtered->text = $item->text;
-                $filtered->user = $item->user->name;
-                $filtered->userName = $item->user->screen_name;
-                $filtered->isRT = $item->retweeted;
+                $response = 'Ok, here are the results:'.PHP_EOL.PHP_EOL
+                    .' - Total of '$count.' tweets;'.PHP_EOL
+                    .' - And the choosen one is:'
+                    .'`'.$tweets[$choosen]->userName.'`, with the message: __'
+                    .$tweets[$choosen]->text.'__'.PHP_EOL
+                    .'Congratulations!';
 
-                $tweets[] = $filtered;
-            }*/
+                $message->text = $response;
 
-            if (0 == strpos($update->message->text)) {
-                
+                $app['telegram']->performApiRequest($message);
             }
 
-            $message->text = print_r($update->message->text, true);
-
-            $app['telegram']->performApiRequest($message);
-
-            if (true !== $result) {
-                return new JsonResponse(['status' => 'Houston, we have a problem.'], 500);
-            }
+            return new JsonResponse(['status' => 'ok!'], 200);
         } catch (\Exception $exception) {
             var_dump($exception);
         }
