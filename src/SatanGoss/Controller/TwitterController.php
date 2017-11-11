@@ -23,8 +23,6 @@ class TwitterController
                 ['q' => $query]
             );
 
-            var_dump($hashtagSearch);
-
             return new JsonResponse([
                 'results' => $hashtagSearch['statuses'],
                 'query' => $query,
