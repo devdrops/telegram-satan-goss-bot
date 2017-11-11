@@ -23,8 +23,10 @@ class TwitterController
                 ['q' => $query]
             );
 
+            var_dump($hashtagSearch);
+
             return new JsonResponse([
-                'results' => $hashtagSearch,
+                'results' => $hashtagSearch['statuses'],
                 'query' => $query,
             ]);
         } catch (\Exception $exception) {
