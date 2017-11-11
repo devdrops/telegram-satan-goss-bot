@@ -53,8 +53,12 @@ class BotController
 
                 $tweets[] = $filtered;
             }*/
- 
-            $message->text = print_r($update, true);
+
+            if (0 == strpos($update->message->text)) {
+                
+            }
+
+            $message->text = print_r($update->message->text, true);
 
             $app['telegram']->performApiRequest($message);
 
