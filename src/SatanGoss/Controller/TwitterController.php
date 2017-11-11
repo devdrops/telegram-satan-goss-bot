@@ -18,12 +18,17 @@ class TwitterController
         try {
             $hashtag = $request->query->get('hashtag');
 
+            $query = '#'.$hashtag.' #phpsp #pagarme'; 
+
             $hashtagSearch = $app['twitter']->get(
                 'search/tweets',
-                ['q' => '#'.$hashtag.' #phpsp #pagarme']
+                ['q' => $query]
             );
 
-            return new JsonResponse(['results' => $hashtagSearch]);
+            return new JsonResponse([
+                'results' => $hashtagSearch,
+                'query' => $query,
+            ]);
         } catch (\Exception $exception) {
             var_dump($exception);
         }
