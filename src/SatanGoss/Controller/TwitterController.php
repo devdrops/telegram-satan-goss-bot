@@ -23,6 +23,7 @@ class TwitterController
                 [
                     'q' => $query,
                     'count' => 100,
+                    'result_type' => 'recent',
                 ]
             );
 
