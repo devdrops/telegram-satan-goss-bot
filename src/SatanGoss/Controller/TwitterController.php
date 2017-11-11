@@ -23,7 +23,7 @@ class TwitterController
                 ['q' => $query]
             );
 
-            $foo = [];
+            $tweets = [];
             foreach ($hashtagSearch->statuses as $item) {
                 $filtered = new \stdClass;
 
@@ -33,11 +33,12 @@ class TwitterController
                 $filtered->userName = $item->user->screen_name;
                 $filtered->isRT = $item->retweeted;
 
-                $foo[] = $filtered;
+                $tweets[] = $filtered;
             }
 
             return new JsonResponse([
-                'tweets' => $foo,
+                'count' => count($tweets),
+                'tweets' => $tweets,
                 'metadata' => $hashtagSearch->search_metadata,
             ]);
         } catch (\Exception $exception) {
