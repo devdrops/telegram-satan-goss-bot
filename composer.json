@@ -14,9 +14,6 @@
         }
     ],
     "autoload": {
-        "psr-0": {
-            "SatanGoss": "src/"
-        },
         "psr-4": {
             "SatanGoss\\": "src/"
         }

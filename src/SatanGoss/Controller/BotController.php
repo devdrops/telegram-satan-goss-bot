@@ -16,7 +16,7 @@ class BotController
     public function webhookAction(Request $request, Application $app)
     {
         try {
-            /*$update = new Update(json_decode($request->getContent(), true));
+            $update = new Update(json_decode($request->getContent(), true));
 
             $message = new SendMessage();
             $message->chat_id = $update->message->chat->id;
@@ -24,15 +24,9 @@ class BotController
 
             $app['telegram']->performApiRequest($message);
 
-            /*
             if (true !== $result) {
                 return new JsonResponse(['status' => 'Houston, we have a problem.'], 500);
             }
-            */
-
-            $foo = $app['twitter']->get('search/tweets', ['q' => '#phpsptalks% #phpsp #pagarme']);
-
-            return new JsonResponse(['status' => $foo]);
         } catch (\Exception $exception) {
             var_dump($exception);
         }
