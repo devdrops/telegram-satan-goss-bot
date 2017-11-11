@@ -21,7 +21,7 @@ $app->register(
 );
 
 $app->before(function (Request $request, Application $app){
-    try {
+    /*try {
         $dbConnection = new \PDO(getenv('DB.LOGS'));
 
         $contents = $request->getContent();
@@ -29,7 +29,7 @@ $app->before(function (Request $request, Application $app){
         $dbConnection->query("INSERT INTO requests (data) VALUES ('$contents')");
     } catch (\Exception $exception) {
         var_dump($exception);
-    }
+    }*/
 });
 
 $app->error(function (\Exception $e, $request, $code) use ($app) {
