@@ -29,8 +29,11 @@ class TwitterController
 
             $tweets = [];
             foreach ($hashtagSearch->statuses as $item) {
-                if (true == $item->retweeted
-                    || 0 === strpos($item->text, 'RT')
+                if (true == $request->query->get('rt', null)
+                    && (
+                        true == $item->retweeted
+                        || 0 === strpos($item->text, 'RT')
+                    )
                 ) {
                     continue;
                 }
