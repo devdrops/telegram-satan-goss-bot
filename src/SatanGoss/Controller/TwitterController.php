@@ -26,6 +26,9 @@ class TwitterController
             $foo = array_map(
                 $hashtagSearch->statuses,
                 function ($item) {
+                    
+                    var_dump($item);die();
+
                     $filtered = new \stdClass;
 
                     $filtered->created_at = $item->created_at;
