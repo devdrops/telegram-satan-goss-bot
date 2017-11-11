@@ -16,7 +16,7 @@ class TwitterController
     public function queryAction(Request $request, Application $app)
     {
         try {
-            $query = '#phptestfest #phpsp #pagarme'; 
+            $query = '#phptestfest #phpsp #pagarme';
 
             $hashtagSearch = $app['twitter']->get(
                 'search/tweets',
@@ -44,6 +44,7 @@ class TwitterController
                 'count' => count($tweets),
                 'tweets' => $tweets,
                 'metadata' => $hashtagSearch->search_metadata,
+                'query' => print_r($request->query->all(), true),
             ]);
         } catch (\Exception $exception) {
             var_dump($exception);
