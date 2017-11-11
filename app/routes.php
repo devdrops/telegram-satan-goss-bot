@@ -6,4 +6,4 @@
 
 $app->post('/action', 'SatanGoss\Controller\BotController::webhookAction');
 $app->post('/pvt/payments', 'SatanGoss\Controller\BotController::webhookAction');
-$app->get('/twitter/{hashtag}', 'SatanGoss\Controller\TwitterController::queryAction');
+$app->get('/twitter', 'SatanGoss\Controller\TwitterController::queryAction');
