@@ -20,7 +20,10 @@ class TwitterController
 
             $hashtagSearch = $app['twitter']->get(
                 'search/tweets',
-                ['q' => $query]
+                [
+                    'q' => $query,
+                    'count' => 100,
+                ]
             );
 
             $tweets = [];
