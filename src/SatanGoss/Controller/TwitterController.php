@@ -23,23 +23,18 @@ class TwitterController
                 ['q' => $query]
             );
 
-            $foo = array_map(
-                $hashtagSearch->statuses,
-                function ($item) {
-                    
-                    var_dump($item);die();
+            $foo = [];
+            foreach ($hashtagSearch->statuses as $item) {
+                $filtered = new \stdClass;
 
-                    $filtered = new \stdClass;
+                $filtered->created_at = $item->created_at;
+                $filtered->text = $item->text;
+                $filtered->user = $item->user->name;
+                $filtered->userName = $item->user->screen_name;
+                $filtered->isRT = $item->retweeted;
 
-                    $filtered->created_at = $item->created_at;
-                    $filtered->text = $item->text;
-                    $filtered->user = $item->user->name;
-                    $filtered->userName = $item->user->screen_name;
-                    $filtered->isRT = $item->retweeted;
-
-                    return $filtered;
-                }
-            );
+                $foo[] = $filtered;
+            }
 
             return new JsonResponse([
                 'full' => $foo,
