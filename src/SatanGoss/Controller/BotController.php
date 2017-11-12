@@ -20,7 +20,7 @@ class BotController
             
             if (isset($update->message->entities)
                 && $update->message->entities[0]->type === 'bot_command'
-                && 0 === strpos($update->message->text, '/lotteryby')
+                && 0 === strpos($update->message->text, '/pickawinner')
             ) {
                 $message = new SendMessage();
                 $message->chat_id = $update->message->chat->id;
@@ -64,7 +64,7 @@ class BotController
                 $choosen = rand(1, $count);
 
                 $response = 'Ok, here are the results:'.PHP_EOL.PHP_EOL
-                    .' - Total of '$count.' tweets;'.PHP_EOL
+                    .' - Total of '.$count.' tweets;'.PHP_EOL
                     .' - And the choosen one is:'
                     .'`'.$tweets[$choosen]->userName.'`, with the message: __'
                     .$tweets[$choosen]->text.'__'.PHP_EOL
